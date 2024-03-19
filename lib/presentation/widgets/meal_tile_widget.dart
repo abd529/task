@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task/utilities/colors.dart';
 
-import '../models/food_model.dart';
-import '../provider/meal_provider.dart';
+import '../../data/models/food_model.dart';
+import '../../provider/meal_provider.dart';
 import 'curved_custom_paint.dart';
 
 class MealTile extends StatelessWidget {

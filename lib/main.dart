@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task/utilities/colors.dart';
-import 'package:task/views/meal_screen.dart';
+import 'package:task/presentation/views/meal_screen.dart';
+
 
 void main() {
   runApp(const MyApp());

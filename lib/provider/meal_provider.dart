@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/food_model.dart';
+import '../data/models/food_model.dart';
 
 class MealTileState with ChangeNotifier {
   int _index = 0;
