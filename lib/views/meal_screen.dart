@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task/utilities/colors.dart';
-
 import '../widgets/meal_tile_widget.dart';
+
 class MealScreen extends StatefulWidget {
   const MealScreen({super.key});
 
@@ -10,60 +10,71 @@ class MealScreen extends StatefulWidget {
 }
 
 class _MealScreenState extends State<MealScreen> {
-  List<IconData> icons = [
+  static const List<IconData> _icons = [
     Icons.sunny_snowing,
     Icons.file_copy_rounded,
     Icons.sunny,
     Icons.nightlight,
     Icons.nights_stay,
-    Icons.access_time_filled
+    Icons.access_time_filled,
   ];
-  List<String> mealNo = [
-    "One","Two","Three", "Four","Five","Six"
+  static const List<String> _mealNo = [
+    "One", "Two", "Three", "Four", "Five", "Six",
   ];
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-        child: ListView(
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("Meals", style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold
-                  ),),
-                  Row(
-                    children: [
-                      IconButton(onPressed: (){}, icon: const Icon(Icons.bookmark, color: AppColors.primary,)),
-                      PopupMenuButton(itemBuilder: (context) {
-                        return [
-                          const PopupMenuItem(child: Text("Option 1")),
-                          const PopupMenuItem(child: Text("Option 2")),
-                          const PopupMenuItem(child: Text("Option 3"))
-                        ];
-                      },)
-                    ],
-                  ),
-                ],
+            const _MealHeader(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _icons.length,
+                itemBuilder: (context, index) {
+                  return MealTile(icon: _icons[index], mealNo: _mealNo[index]);
+                },
               ),
             ),
-            SizedBox(
-              height: size.height-100,
-              child: ListView.builder(
-                itemCount: 6,
-                itemBuilder : (context, index) {
-                  return MealTile(icon: icons[index],mealNo:mealNo[index]);
-                }
-              ),
-            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _MealHeader extends StatelessWidget {
+  const _MealHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            "Meals",
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.bookmark, color: AppColors.primary),
+              ),
+              PopupMenuButton(
+                itemBuilder: (context) => [
+                  const PopupMenuItem(child: Text("Option 1")),
+                  const PopupMenuItem(child: Text("Option 2")),
+                  const PopupMenuItem(child: Text("Option 3")),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
